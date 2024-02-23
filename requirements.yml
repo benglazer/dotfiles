@@ -1,0 +1,5 @@
+---
+roles:
+  - name: geerlingguy.git
+collections:
+  - name: ansible.builtin

@@ -1,0 +1,53 @@
+---
+- name: Bootstrap local environment
+  hosts: localhost
+  gather_facts: no
+  become: no
+  vars:
+    dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
+    requirements_path: "{{ dotfiles_dir }}/requirements.yml"
+    stow_packages:
+      - common
+      - "{{ 'mac' if ansible_os_family == 'Darwin' else 'unix' }}"
+  
+  tasks:
+    - name: Check if requirements.yml exists
+      ansible.builtin.stat:
+        path: "{{ requirements_path }}"
+      register: requirements_file
+
+    - name: Install required Ansible roles and collections
+      ansible.builtin.command:
+        cmd: "ansible-galaxy install -r {{ requirements_path }}"
+      when: requirements_file.stat.exists
+      changed_when: false
+
+    - name: Ensure Stow is installed
+      package:
+        name: stow
+        state: present
+      when: ansible_os_family == 'Darwin' or ansible_os_family == 'Debian'
+
+    - name: Symlink dotfiles using Stow
+      command:
+        cmd: "stow -d {{ dotfiles_dir }} -t {{ ansible_env.HOME }} {{ item }}"
+      loop: "{{ stow_packages }}"
+      when: ansible_os_family == 'Darwin' or ansible_os_family == 'Debian'
+
+    - name: Install Homebrew packages
+      homebrew:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ lookup('file', '{{ dotfiles_dir }}/mac/Brewfile') | from_yaml }}"
+      when: ansible_os_family == 'Darwin'
+
+    - name: Install APT packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: yes
+      loop: "{{ lookup('file', '{{ dotfiles_dir }}/unix/apt_packages.yml') | from_yaml }}"
+      when: ansible_os_family == 'Debian'
+
+    # Add additional tasks for your specific setup needs
+    # ...
