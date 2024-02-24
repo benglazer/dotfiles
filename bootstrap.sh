@@ -1,4 +1,10 @@
 #!/bin/bash
+set -euo pipefail  # https://gist.github.com/robin-a-meade/58d60124b88b60816e8349d1e3938615
+IFS=$'\n\t'
+
+# Bootstrap a new Ubuntu or MacOS computer. Assumes a minimalist OS
+# installation as a starting point.
+
 
 # Variables
 REPO_URL="https://github.com/benglazer/dotfiles.git"
