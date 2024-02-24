@@ -2,6 +2,7 @@
 
 ## Example folder structure
 
+```
 dotfiles/
 ├── common/
 │   ├── gitconfig
@@ -21,3 +22,4 @@ dotfiles/
 ├── playbook.yml
 ├── requirements.yml
 └── README.md
+```
