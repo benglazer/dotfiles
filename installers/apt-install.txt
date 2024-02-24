@@ -1,0 +1,7 @@
+dnsutils
+jc
+jq
+net-tools
+psmisc
+sqlite3
+vim

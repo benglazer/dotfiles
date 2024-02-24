@@ -1,0 +1,7 @@
+# cli tools
+brew "vim"
+
+# gui tools
+cask "firefox"
+cask "google-chrome"
+cask "pycharm-ce"
