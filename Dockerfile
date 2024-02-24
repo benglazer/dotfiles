@@ -10,7 +10,7 @@ RUN apt-get update && apt-get full-upgrade -y && apt-get install -y \
     # zsh \
     # python3 \
     # python3-pip \
-    # sudo \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Optional: Setup a non-root user (for environments where this is relevant)
@@ -19,16 +19,14 @@ USER testuser
 WORKDIR /home/testuser
 
 # Clone your dotfiles repository
-RUN git clone <your-dotfiles-repo-url> dotfiles
+RUN git clone https://github.com/benglazer/dotfiles.git
 WORKDIR dotfiles
 
 # Run your dotfiles installation script
-# Replace `install.sh` with your script's filename
-RUN ./install.sh
+RUN ./bootstrap.sh
 
 # Set the default command to zsh (or bash, depending on your preference)
 CMD ["zsh"]
-
 
 # To build this image:
 #     docker build -t dotfiles-test .
