@@ -4,7 +4,7 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update and install dependencies
-RUN apt-get update && apt-get fullapt-get install -y \
+RUN apt-get update && apt-get full-upgrade -y && apt-get install -y \
     git \
     # curl \
     # zsh \
