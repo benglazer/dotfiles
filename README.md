@@ -23,3 +23,14 @@ dotfiles/
 ├── requirements.yml
 └── README.md
 ```
+
+
+## Testing in Docker
+
+To build the Docker image:
+
+    docker build -t dotfiles-test .
+
+To run the Docker image:
+
+    docker run -it dotfiles-test

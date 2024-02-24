@@ -27,9 +27,3 @@ RUN ./bootstrap.sh
 
 # Set the default command to zsh (or bash, depending on your preference)
 CMD ["zsh"]
-
-# To build this image:
-#     docker build -t dotfiles-test .
-#
-# To run this image:
-#     docker run -it dotfiles-test
