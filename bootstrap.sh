@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-REPO_URL="https://githost.com/path/to/repo"
+REPO_URL="https://github.com/benglazer/dotfiles.git"
 DOTFILES_DIR="$HOME/.dotfiles"
 PLAYBOOK_PATH="$DOTFILES_DIR/playbook.yml"
 
