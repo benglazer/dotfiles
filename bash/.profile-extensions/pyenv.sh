@@ -1,6 +1,4 @@
 #!/bin/bash
-set -euo pipefail
-IFS=$'\n\t'
 
 if [[ -x ~/.pyenv/libexec/pyenv ]]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
