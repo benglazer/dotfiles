@@ -12,7 +12,7 @@ RUN apt-get update && apt-get full-upgrade -y && apt-get install -y \
 # Set up a non-root user "testuser" for testing
 RUN adduser --disabled-password testuser
 RUN echo 'testuser ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/testuser
-RUN chmod 400 /etc/sudoers.d/testuser
+RUN chmod 0400 /etc/sudoers.d/testuser
 
 # Activate the testuser
 USER testuser
