@@ -74,7 +74,7 @@ backup_existing_dotfiles() {
 install_dotfiles() {
     echo "Installing dotfiles via stow."
     cd "${DOTFILES_DIR}" || return
-    stow "${STOW_GROUPS_TO_INSTALL[@]}"
+    stow "${STOW_TARGETS[@]}"
 }
 
 post_install_config() {
