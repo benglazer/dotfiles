@@ -62,7 +62,7 @@ backup_existing_dotfiles() {
     for dotfile_group in "${STOW_TARGETS[@]}" ; do
         cd "${dotfile_group}" || return
         find . -type f -exec sh -c '
-            if [[ -f "${HOME}/$1" ]] ; then
+            if [ -f "${HOME}/$1" ] ; then
                 mkdir -pv "$(dirname "$2/${dotfile_group}/$1")"
                 mv -v "${HOME}/$1" \
                       "$2/${dotfile_group}/$1"
