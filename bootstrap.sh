@@ -77,6 +77,13 @@ install_dotfiles() {
     stow "${STOW_GROUPS_TO_INSTALL[@]}"
 }
 
+post_install_config() {
+    git config --global core.excludesfile "${HOME}/.gitignore"
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        git config --global credential.helper "osxkeychain"
+    fi
+}
+
 main() {
     pushd . > /dev/null
     install_dependencies
@@ -84,6 +91,7 @@ main() {
     backup_existing_dotfiles
     install_dotfiles
     install_optional_packages
+    post_install_config
     popd > /dev/null || return
 }
 
