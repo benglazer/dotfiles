@@ -10,20 +10,21 @@ if ! command -v pyenv &> /dev/null; then
 
         # Via https://github.com/pyenv/pyenv/wiki/Common-build-problems
         sudo apt-get install -y \
-            make \
             build-essential \
-            libssl-dev \
-            zlib1g-dev \
-            libbz2-dev \
-            libreadline-dev \
-            libsqlite3-dev \
-            wget \
             curl \
-            llvm \
+            make \
+            libbz2-dev \
+            liblzma-dev \
             libncurses5-dev \
             libncursesw5-dev \
+            libreadline-dev \
+            libsqlite3-dev \
+            libssl-dev \
+            llvm \
+            tk-dev \
+            wget \
             xz-utils \
-            tk-dev
+            zlib1g-dev
 
         # Via https://github.com/pyenv/pyenv-installer
         set +u
