@@ -1,0 +1,37 @@
+[user]
+	name = Ben Glazer
+	email = ben@benglazer.com
+[core]
+	excludesfile = /home/ben/.gitignore
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	ui = auto
+[alias]
+	st = status -s -b
+	df = diff
+	dw = diff --word-diff
+	co = checkout
+	ci = commit
+	br = branch
+	l  = log --oneline --decorate --graph --all --date=relative
+	t = tag -a
+	lp = log --pretty=format:'%C(white)%h%C(auto)%d%Creset %s %C(cyan)(%cr)%Creset - %C(yellow)%an%Creset' --abbrev-commit --date=relative --graph --all
+	fixup = commit --amend -C HEAD
+	timeline = log --graph --branches --pretty=oneline --decorate
+	untracked-files = ls-files -o --exclude-standard
+	ignored-files = ls-files --others -i --exclude-standard
+	modified-files = ls-files -m
+[apply]
+	whitespace = fix
+[push]
+	default = simple
+[pull]
+	ff = only
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
