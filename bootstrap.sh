@@ -84,6 +84,11 @@ post_install_config() {
     fi
 }
 
+run_installers() {
+    echo "Running installers."
+    source "${DOTFILES_DIR}/installers/pyenv.sh"
+}
+
 main() {
     pushd . > /dev/null
     install_dependencies
@@ -92,6 +97,7 @@ main() {
     install_dotfiles
     install_optional_packages
     post_install_config
+    run_installers
     popd > /dev/null || return
 }
 
