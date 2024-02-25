@@ -23,16 +23,14 @@ install_dependencies() {
     # Install and update OS package managers
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         echo "Updating apt sources."
-        sudo apt update && sudo apt upgrade
-        echo "Installing new packages."
-        sudo apt install git stow "linux-headers-$(uname -r)" build-essential dkms  # minimal requirements
-        sudo xargs -a "${DOTFILES_DIR}/installers/apt-install.txt" sudo apt install -y
+        sudo apt-get update && sudo apt-get upgrade -y
+        echo "Installing minimal dependencies."
+        sudo apt-get install -y git stow "linux-headers-$(uname -r)" build-essential dkms
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Installing homebrew."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo "Installing new packages."
-        brew install git stow  # minimal requirements
-        brew bundle --file="${DOTFILES_DIR}/installers/Brewfile"
+        echo "Installing minimal dependencies."
+        brew install git stow
     else
         echo "Unsupported OS. Cannot continue."
         exit 1
@@ -46,6 +44,15 @@ clone_dotfiles_repo() {
     else
         echo "Dotfiles directory already exists. Pulling latest changes."
         git -C "${DOTFILES_DIR}" pull
+    fi
+}
+
+install_optional_packages() {
+    echo "Installing new packages."
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo xargs -a "${DOTFILES_DIR}/installers/apt-install.txt" sudo apt-get install -y
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew bundle --file="${DOTFILES_DIR}/installers/Brewfile"
     fi
 }
 
@@ -76,6 +83,7 @@ main() {
     clone_dotfiles_repo
     backup_existing_dotfiles
     install_dotfiles
+    install_optional_packages
     popd > /dev/null || return
 }
 
