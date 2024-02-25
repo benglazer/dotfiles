@@ -86,6 +86,7 @@ post_install_config() {
 
 run_installers() {
     echo "Running installers."
+    source "${DOTFILES_DIR}/installers/ssh.sh"
     source "${DOTFILES_DIR}/installers/pyenv.sh"
 }
 
