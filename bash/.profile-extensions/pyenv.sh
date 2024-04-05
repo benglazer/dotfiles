@@ -10,40 +10,27 @@ fi
 
 # Custom functions
 
-latest_python_stable() {
-    pyenv install -l | sed -nr 's/^  ([\.0-9]+)$/\1/p' | tail -n 1
-}
-
-latest_python2_stable() {
-    pyenv install -l | sed -nr 's/^  (2\.[\.0-9]+)$/\1/p' | tail -n 1
-}
-
-latest_python3_stable() {
-    pyenv install -l | sed -nr 's/^  (3\.[\.0-9]+)$/\1/p' | tail -n 1
-}
-
-alias latest_python=latest_python_stable
-
-alias install_latest_python='brew upgrade pyenv pyenv-virtualenv && pyenv update && pyenv install --verbose --skip-existing $(latest_python_stable)'
+alias latest_python="pyenv install -l | sed -nr 's/^  ([\.0-9]+)$/\1/p' | tail -n 1"
+alias install_latest_python='brew upgrade pyenv pyenv-virtualenv && pyenv update && pyenv install --verbose --skip-existing $(latest_python)'
 
 mkvenvhere() {
     env_name=${1:-$(basename $(pwd))}
-    pyenv virtualenv $(latest_python_stable) "${env_name}"
+    pyenv virtualenv $(latest_python) "${env_name}"
     pyenv local "${env_name}"
 }
 
-# Check if latest_python_stable is installed
+# Check if latest python version is installed
 check_latest_python_installed() {
-    if pyenv versions --bare | grep -q "^$(latest_python_stable)$"; then
+    if pyenv versions --bare | grep -q "^$(latest_python)$"; then
         return 0  # Latest Python is installed, return true (0)
     else
         return 1  # Latest Python is not installed, return false (1)
     fi
 }
 
-# Check if "default" virtualenv is set to latest_python_stable
+# Check if "default" virtualenv is set to latest_python
 check_latest_python_default() {
-    if pyenv versions --bare | grep -q "^$(latest_python_stable)/envs/default$"; then
+    if pyenv versions --bare | grep -q "^$(latest_python)/envs/default$"; then
         return 0  # Latest Python is installed, return true (0)
     else
         return 1  # Latest Python is not installed, return false (1)
@@ -59,17 +46,17 @@ ensure_latest_python_default() {
     if ! check_latest_python_default; then
         if ! check_latest_python_installed; then
             # Install latest python version
-            echo Installing python $(latest_python_stable)
-            pyenv install $(latest_python_stable)
+            echo Installing python $(latest_python)
+            pyenv install $(latest_python)
         fi
 
         echo Creating tmp virtualenv
-        pyenv virtualenv $(latest_python_stable) tmp
+        pyenv virtualenv $(latest_python) tmp
         pyenv activate tmp
 
-        echo Recreating default virtualenv using python $(latest_python_stable)
+        echo Recreating default virtualenv using python $(latest_python)
         pyenv uninstall -f default
-        pyenv virtualenv $(latest_python_stable) default
+        pyenv virtualenv $(latest_python) default
         pyenv activate default
 
         echo Cleaning up tmp virtualenv
