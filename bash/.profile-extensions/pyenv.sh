@@ -10,7 +10,13 @@ fi
 
 # Custom functions
 
-alias latest_python="pyenv install -l | sed -nr 's/^  ([\.0-9]+)$/\1/p' | tail -n 1"
+latest_python() {
+    # Return the latest stable version of python, matching a version prefix
+    # if provided
+    local version="${1:-3}"
+    pyenv install -l | sed -nr "s/^  (${version}(\.[-\.0-9]+)?)$/\1/p" | tail -n 1
+}
+
 alias install_latest_python='brew upgrade pyenv pyenv-virtualenv && pyenv update && pyenv install --verbose --skip-existing $(latest_python)'
 
 mkvenvhere() {
