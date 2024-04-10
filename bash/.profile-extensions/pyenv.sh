@@ -1,12 +1,7 @@
-#!/bin/bash
+# Enable pyenv
+# Via https://github.com/pyenv/pyenv?tab=readme-ov-file#set-up-your-shell-environment-for-pyenv
+eval "$(pyenv init -)"
 
-if [[ -x ~/.pyenv/libexec/pyenv ]]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    set +u
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-    set -u
-fi
 
 # Custom functions
 
