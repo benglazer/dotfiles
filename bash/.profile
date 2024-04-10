@@ -1,11 +1,11 @@
-#!/bin/bash
-
-# Executed by the command interpreter for login shells. This file is not
-# read by bash if ~/.bash_profile or ~/.bash_login exists.
+# Executed by the command interpreter for login shells. Ensure all additions
+# are compatible with both bash and zsh (or execute them conditionally). This
+# file is not executed by bash if ~/.bash_profile or ~/.bash_login exists.
 
 echo Running .profile
 
 # Source .bashrc if we're running bash and .bashrc exists
+# (zsh automatically sources .zshrc, so no need to call it here)
 if [ -n "$BASH_VERSION" ]; then
     if [ -f "${HOME}/.bashrc" ]; then
     	source "${HOME}/.bashrc"
@@ -19,6 +19,9 @@ fi
 if [[ -d "${HOME}/.local/bin" ]] ; then
     PATH="${HOME}/.local/bin:${PATH}"
 fi
+
+# homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Load extensions
 source "${HOME}/.profile-extensions/pyenv.sh"

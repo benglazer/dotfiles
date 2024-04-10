@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Executed by bash for non-login shells.
 
 echo Running .bashrc

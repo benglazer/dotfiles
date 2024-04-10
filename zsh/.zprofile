@@ -1,5 +1,6 @@
-# homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -f ~/.profile ]; then
+    source ~/.profile
+fi
 
 # pyenv
 eval "$(pyenv init --path)"
