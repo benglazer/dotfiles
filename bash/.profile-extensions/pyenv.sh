@@ -18,6 +18,10 @@ mkvenvhere() {
     env_name=${1:-$(basename $(pwd))}
     pyenv virtualenv $(latest_python) "${env_name}"
     pyenv local "${env_name}"
+    if [ -f "requirements.txt" ]; then
+        echo "requirements.txt found, installing packages..."
+        pip install -r requirements.txt
+    fi
 }
 
 # Check if latest python version is installed
