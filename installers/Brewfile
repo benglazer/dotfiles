@@ -7,6 +7,7 @@ brew "ffmpeg"
 brew "gcalcli"
 brew "gnutls"
 brew "heroku"
+brew "mas"
 brew "nmap"
 brew "node"
 brew "pandoc"
@@ -81,3 +82,6 @@ tap "homebrew/cask-fonts"
 cask "font-hack-nerd-font"
 cask "font-inconsolata-for-powerline"
 cask "font-menlo-for-powerline"
+
+# macos app store
+mas "Magnet", id: 441258766
