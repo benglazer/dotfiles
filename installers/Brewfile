@@ -75,3 +75,9 @@ cask "vlc"
 cask "wacom-tablet"
 cask "xquartz"
 cask "zoom"
+
+# fonts
+tap "homebrew/cask-fonts"
+cask "font-hack-nerd-font"
+cask "font-inconsolata-for-powerline"
+cask "font-menlo-for-powerline"
