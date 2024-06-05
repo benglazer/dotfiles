@@ -38,6 +38,12 @@ if ! command -v pyenv &> /dev/null; then
     fi
 fi
 
+# Initialize pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # Set default global env to latest python version
 source "${HOME}/.profile-extensions/pyenv.sh"
 ensure_latest_python_default
