@@ -31,6 +31,10 @@ To build the Docker image:
 
     docker build -t dotfiles-test .
 
+To run the Docker image:
+
+    docker run -it --rm dotfiles-test
+
 To run the Docker image as a login shell:
 
-    docker run -it dotfiles-test --login
+    docker run -it --rm dotfiles-test bash --login
