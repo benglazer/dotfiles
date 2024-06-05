@@ -26,7 +26,6 @@ cask "1password"
 cask "alfred"
 cask "android-platform-tools"
 cask "appcleaner"
-cask "appzapper"
 cask "audacity"
 cask "balenaetcher"
 cask "betterdisplay"
@@ -37,6 +36,7 @@ cask "caffeine"
 cask "calibre"
 cask "chromedriver"
 cask "crossover"
+cask "cyberduck"
 cask "dash"
 cask "discord"
 cask "disk-inventory-x"
@@ -85,3 +85,4 @@ cask "font-menlo-for-powerline"
 
 # macos app store
 mas "Magnet", id: 441258766
+mas "Mountain Duck", id: 1024974133
