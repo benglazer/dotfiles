@@ -42,17 +42,7 @@ clone_dotfiles_repo() {
         echo "Cloning dotfiles git repo from ${REPO_URL}"
         git clone "${REPO_URL}" "${DOTFILES_DIR}"
     else
-        echo "Dotfiles directory already exists. Pulling latest changes."
-        git -C "${DOTFILES_DIR}" pull
-    fi
-}
-
-install_optional_packages() {
-    echo "Installing new packages."
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        sudo xargs -a "${DOTFILES_DIR}/installers/apt-install.txt" sudo apt-get install -y
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-        brew bundle --file="${DOTFILES_DIR}/installers/Brewfile"
+        echo "Using existing dotfiles directory."
     fi
 }
 
@@ -75,6 +65,15 @@ install_dotfiles() {
     echo "Installing dotfiles via stow."
     cd "${DOTFILES_DIR}" || return
     stow "${STOW_TARGETS[@]}"
+}
+
+install_optional_packages() {
+    echo "Installing new packages."
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo xargs -a "${DOTFILES_DIR}/installers/apt-install.txt" sudo apt-get install -y
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew bundle --file="${DOTFILES_DIR}/installers/Brewfile"
+    fi
 }
 
 post_install_config() {
