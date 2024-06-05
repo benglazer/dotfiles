@@ -25,7 +25,7 @@ install_dependencies() {
         echo "Updating apt sources."
         sudo apt-get update && sudo apt-get upgrade -y
         echo "Installing minimal dependencies."
-        sudo apt-get install -y git stow "linux-headers-$(uname -r)" build-essential dkms
+        sudo apt-get install -y git stow
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Installing homebrew."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
