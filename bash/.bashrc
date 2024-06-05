@@ -1,7 +1,5 @@
 # Executed by bash for non-login shells.
 
-echo Running .bashrc
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
