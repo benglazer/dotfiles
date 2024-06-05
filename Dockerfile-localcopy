@@ -1,0 +1,28 @@
+FROM ubuntu:latest
+
+# Avoid prompts from apt
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install dependencies
+RUN apt-get update && apt-get full-upgrade -y && apt-get install -y \
+    curl \
+    sudo \
+    adduser \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up a non-root user "testuser" for testing
+RUN adduser --disabled-password testuser
+RUN echo 'testuser ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/testuser
+RUN chmod 0400 /etc/sudoers.d/testuser
+
+# Copy dotfiles into testuser's home dir and assign them to testuser
+WORKDIR /home/testuser
+COPY . .dotfiles
+RUN chown -R testuser:testuser .dotfiles
+
+# Activate the testuser and run the dotfiles bootstrap script
+USER testuser
+RUN bash .dotfiles/bootstrap.sh
+
+# Set the default command to bash
+CMD ["bash"]
