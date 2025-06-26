@@ -4,7 +4,7 @@ IFS=$'\n\t'
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if ! command -v pycharm-community &> /dev/null; then
-        echo "pycharm-community could not be found. Attempting to install pyenv..."
+        echo "pycharm-community could not be found. Installing..."
 
         # Pre-set to avoid interactive prompt from tzdata apt package
         sudo apt install libsquashfuse0 squashfuse fuse snapd

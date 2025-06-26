@@ -24,5 +24,5 @@ if command -v brew > /dev/null; then
 fi
 
 # Load extensions
-source "${HOME}/.profile-extensions/pyenv.sh"
+source "${HOME}/.profile-extensions/python.sh"
 source "${HOME}/.profile-extensions/ssh-agent.sh"
