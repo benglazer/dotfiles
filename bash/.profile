@@ -1,3 +1,5 @@
+echo Running .profile
+
 # Executed by the command interpreter for login shells. Ensure all additions
 # are compatible with both bash and zsh (or execute them conditionally). This
 # file is not executed by bash if ~/.bash_profile or ~/.bash_login exists.

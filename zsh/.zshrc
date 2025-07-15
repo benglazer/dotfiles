@@ -1,3 +1,5 @@
+echo Running .zshrc
+
 # zsh configurations
 setopt auto_cd
 
