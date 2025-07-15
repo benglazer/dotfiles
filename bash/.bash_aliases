@@ -102,3 +102,4 @@ fi
 alias webserver='python3 -m http.server'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'  # stopwatch
 alias hfreq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'  # show 30 most commonly used commands from history
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
