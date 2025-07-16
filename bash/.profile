@@ -21,9 +21,7 @@ if [[ -d "${HOME}/.local/bin" ]] ; then
 fi
 
 # homebrew
-if command -v brew > /dev/null; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Load extensions
 source "${HOME}/.profile-extensions/python.sh"
