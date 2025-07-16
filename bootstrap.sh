@@ -10,7 +10,7 @@ IFS=$'\n\t'
 REPO_URL="https://github.com/benglazer/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
 DOTFILES_BACKUP="${HOME}/.dotfiles-backup"
-STOW_TARGETS=(bash git vim)
+STOW_TARGETS=(bash git vim zsh)
 
 
 # Ensure the script is run as a normal user, not root
