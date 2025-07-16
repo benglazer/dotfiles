@@ -56,7 +56,7 @@ backup_existing_dotfiles() {
         find . -type f -exec sh -c '
             if [ -f "${HOME}/$1" ] ; then
                 mkdir -pv "$(dirname "$2/${dotfile_group}/$1")"
-                mv -v "${HOME}/$1" \
+                mv -iv "${HOME}/$1" \
                       "$2/${dotfile_group}/$1"
             fi' shell {} "${DOTFILES_BACKUP}" \;
         cd .. || return
