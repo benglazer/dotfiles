@@ -1,67 +1,105 @@
-# References:
+### References
 # https://macos-defaults.com/
 # https://gist.github.com/erikh/2260182
 
+### Manual steps
+# First, execute these steps manually:
+# 1. Complete the regular MacOS install process.
+# 2. Open Preferences —> Time Machine -> Options. Check the boxes next to:
+#     - Back up while on battery power and
+#     - Exclude system files and applications
+# 3. Complete an initial backup.
+# 4. Set Caps Lock to Control (doesn't change defaults).
+# 5. Open Terminal.app and install dotfiles via bootstrap.sh.
 
-# Dock
+### Backup defaults
 
-## remove all persistent apps
-defaults write "com.apple.dock" "persistent-apps" -array
+defaults read > defaults.orig.txt  # backup defaults
 
-## autohide
-defaults write com.apple.dock "autohide" -bool "true" 
+### Keyboard
 
-## instantly hide
+# May need to reboot before the following are in effect. Not sure why.
+
+# fast keyboard repeat rate (2 is lowest setting in UI)
+defaults write \"Apple Global Domain\" KeyRepeat 2
+# low delay before repeat starts (15 is lowest setting in UI)
+defaults write \"Apple Global Domain\" InitialKeyRepeat 15
+# tab to navigate between controls
+defaults write \"Apple Global Domain\" AppleKeyboardUIMode 2
+# disable spell check
+defaults write \"Apple Global Domain\" NSAutomaticSpellingCorrectionEnabled 0
+# disable auto-capitalization
+defaults write \"Apple Global Domain\" NSAutomaticCapitalizationEnabled 0
+# disable period on double-space
+defaults write \"Apple Global Domain\" NSAutomaticPeriodSubstitutionEnabled 0
+# disable "smart" quotes and dashes
+defaults write \"Apple Global Domain\" NSAutomaticQuoteSubstitutionEnabled 0
+defaults write \"Apple Global Domain\" NSAutomaticDashSubstitutionEnabled 0
+
+### Trackpad
+
+# fast trackpad
+defaults write \"Apple Global Domain\" com.apple.trackpad.scaling 3
+# tap-to-click
+defaults write \"com.apple.AppleMultitouchTrackpad\" Clicking 1
+# enable Exposé swipe down gesture
+defaults write \"com.apple.dock\" showAppExposeGestureEnabled 1
+# swipe between full-screen spaces with four fingers
+defaults write \"com.apple.AppleMultitouchTrackpad\" TrackpadThreeFingerHorizSwipeGesture 0
+# navigate back/forward between pages (three-finger swipe left/right)
+defaults write \"Apple Global Domain\" AppleEnableSwipeNavigateWithScrolls 0
+defaults write \"com.apple.AppleMultitouchTrackpad\" TrackpadThreeFingerHorizSwipeGesture 1
+defaults write \"com.apple.driver.AppleBluetoothMultitouch.trackpad\" TrackpadThreeFingerHorizSwipeGesture 1
+# disable Notification Center gesture (two-finger swipe left from right edge)
+defaults write \"com.apple.AppleMultitouchTrackpad\" TrackpadTwoFingerFromRightEdgeSwipeGesture 0
+defaults write \"com.apple.driver.AppleBluetoothMultitouch.trackpad\" TrackpadTwoFingerFromRightEdgeSwipeGesture 0
+
+### Accessibility
+
+# enable zoom using Control + two-finger swipe up/down
+defaults write \"com.apple.AppleMultitouchTrackpad\" HIDScrollZoomModifierMask 262144
+defaults write \"com.apple.driver.AppleBluetoothMultitouch.trackpad\" HIDScrollZoomModifierMask 262144
+defaults write \"com.apple.universalaccess\" closeViewPanningMode 0
+defaults write \"com.apple.universalaccess\" closeViewScrollWheelToggle 1
+defaults write \"com.apple.universalaccess\" closeViewZoomFollowsFocus 1
+defaults write \"com.apple.universalaccess\" closeViewSmoothImages 0
+# enable dictation
+defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs DictationIMMessageTracesSinceLastReport 2
+defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs DictationIMUseOnlyOfflineDictation 1
+
+### Dock
+
+# remove app shortcuts from dock
+defaults delete com.apple.dock persistent-apps
+# don't show recents in dock
+defaults write com.apple.dock show-recents 0
+# auto-hide dock
+defaults write com.apple.dock autohide 1
+# instantly hide
 defaults write com.apple.dock "autohide-time-modifier" -float "0"
-
-## instantly show
+# instantly show
 defaults write com.apple.dock "autohide-delay" -float "0"
 
 killall Dock
 
+### Finder
 
-# Finder
+# show all file extensions
+defaults write \"Apple Global Domain\" AppleShowAllExtensions 1
+# don't warn before changing an extension
+defaults write \"com.apple.finder\" FXEnableExtensionChangeWarning 0
+# sort folders above files
+defaults write \"com.apple.finder\" _FXSortFoldersFirst 1
+# set default search scope to current directory
+defaults write \"com.apple.finder\" FXDefaultSearchScope SCcf
+# show hidden files
+defaults write \"com.apple.finder\" AppleShowAllFiles 1
+# show path bar
+defaults write \"com.apple.finder\" ShowPathbar 0
 
-## show all file extensions
-defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
-
-## show hidden files
-defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
-
-## show path bar
-defaults write com.apple.finder "ShowPathbar" -bool "false"
-
-# doesn't seem to work
-# ## default to list view
+# doesn't seem to work:
+# # default to list view
 # defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
-
-## default search scope to the current folder
-defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf"
-
-## disable warning when changing a file extension
-defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
 
 killall Finder
 
-
-# Keyboard
-
-# Hmmm... this doesn't persist across reboots. Do it manually in "Keyboard > Keyboard Shortcuts... > Customize modifier keys".
-# ## map Caps Lock key to left Ctrl
-# hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
-
-# Need to reboot before the following are in effect... tho not sure why.
-
-## initial pause before key repeat
-## 15 is lowest setting in Settings UI
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
-
-## key repeat delay
-## 2 is lowest setting in Settings UI
-defaults write NSGlobalDomain KeyRepeat -int 2
-
-
-# Trackpad
-
-# set gestures manually
-# set tracking speed manually
