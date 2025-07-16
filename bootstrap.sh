@@ -29,6 +29,8 @@ install_dependencies() {
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Installing homebrew."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo "Activating homebrew."
+        eval "$(/opt/homebrew/bin/brew shellenv)"
         echo "Installing minimal dependencies."
         brew install git stow
     else
