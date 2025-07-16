@@ -1,6 +1,4 @@
 csvkit
 howdoi
 ipython
-mentat
 notebook
-rawdog-ai
