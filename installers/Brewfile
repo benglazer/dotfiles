@@ -47,12 +47,6 @@ cask "tunnelblick"
 cask "vlc"
 cask "zoom"
 
-# fonts
-tap "homebrew/cask-fonts"
-cask "font-hack-nerd-font"
-cask "font-inconsolata-for-powerline"
-cask "font-menlo-for-powerline"
-
 # macos app store
 mas "Magnet", id: 441258766
 mas "Mountain Duck", id: 1024974133
