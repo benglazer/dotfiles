@@ -3,13 +3,17 @@
 # https://gist.github.com/erikh/2260182
 
 ### Manual steps
+
 # First, execute these steps manually:
 # 1. Complete the regular MacOS install process.
 # 2. Open Preferences —> Time Machine -> Options. Check the boxes next to:
 #     - Back up while on battery power and
 #     - Exclude system files and applications
 # 3. Complete an initial backup.
-# 4. Set Caps Lock to Control (doesn't change defaults).
+# 4. Complete manual config steps
+#   a. Set Caps Lock to Control
+#   b. Enable zoom using Control + two-finger swipe up/down
+#   c. Enable dictation
 # 5. Open Terminal.app and install dotfiles via bootstrap.sh.
 
 ### Backup defaults
@@ -21,51 +25,38 @@ defaults read > defaults.orig.txt  # backup defaults
 # May need to reboot before the following are in effect. Not sure why.
 
 # fast keyboard repeat rate (2 is lowest setting in UI)
-defaults write \"Apple Global Domain\" KeyRepeat 2
+defaults write "Apple Global Domain" KeyRepeat 2
 # low delay before repeat starts (15 is lowest setting in UI)
-defaults write \"Apple Global Domain\" InitialKeyRepeat 15
+defaults write "Apple Global Domain" InitialKeyRepeat 15
 # tab to navigate between controls
-defaults write \"Apple Global Domain\" AppleKeyboardUIMode 2
+defaults write "Apple Global Domain" AppleKeyboardUIMode 2
 # disable spell check
-defaults write \"Apple Global Domain\" NSAutomaticSpellingCorrectionEnabled 0
+defaults write "Apple Global Domain" NSAutomaticSpellingCorrectionEnabled 0
 # disable auto-capitalization
-defaults write \"Apple Global Domain\" NSAutomaticCapitalizationEnabled 0
+defaults write "Apple Global Domain" NSAutomaticCapitalizationEnabled 0
 # disable period on double-space
-defaults write \"Apple Global Domain\" NSAutomaticPeriodSubstitutionEnabled 0
+defaults write "Apple Global Domain" NSAutomaticPeriodSubstitutionEnabled 0
 # disable "smart" quotes and dashes
-defaults write \"Apple Global Domain\" NSAutomaticQuoteSubstitutionEnabled 0
-defaults write \"Apple Global Domain\" NSAutomaticDashSubstitutionEnabled 0
+defaults write "Apple Global Domain" NSAutomaticQuoteSubstitutionEnabled 0
+defaults write "Apple Global Domain" NSAutomaticDashSubstitutionEnabled 0
 
 ### Trackpad
 
 # fast trackpad
-defaults write \"Apple Global Domain\" com.apple.trackpad.scaling 3
+defaults write "Apple Global Domain" com.apple.trackpad.scaling 3
 # tap-to-click
-defaults write \"com.apple.AppleMultitouchTrackpad\" Clicking 1
+defaults write "com.apple.AppleMultitouchTrackpad" Clicking 1
 # enable Exposé swipe down gesture
-defaults write \"com.apple.dock\" showAppExposeGestureEnabled 1
+defaults write "com.apple.dock" showAppExposeGestureEnabled 1
 # swipe between full-screen spaces with four fingers
-defaults write \"com.apple.AppleMultitouchTrackpad\" TrackpadThreeFingerHorizSwipeGesture 0
+defaults write "com.apple.AppleMultitouchTrackpad" TrackpadThreeFingerHorizSwipeGesture 0
 # navigate back/forward between pages (three-finger swipe left/right)
-defaults write \"Apple Global Domain\" AppleEnableSwipeNavigateWithScrolls 0
-defaults write \"com.apple.AppleMultitouchTrackpad\" TrackpadThreeFingerHorizSwipeGesture 1
-defaults write \"com.apple.driver.AppleBluetoothMultitouch.trackpad\" TrackpadThreeFingerHorizSwipeGesture 1
+defaults write "Apple Global Domain" AppleEnableSwipeNavigateWithScrolls 0
+defaults write "com.apple.AppleMultitouchTrackpad" TrackpadThreeFingerHorizSwipeGesture 1
+defaults write "com.apple.driver.AppleBluetoothMultitouch.trackpad" TrackpadThreeFingerHorizSwipeGesture 1
 # disable Notification Center gesture (two-finger swipe left from right edge)
-defaults write \"com.apple.AppleMultitouchTrackpad\" TrackpadTwoFingerFromRightEdgeSwipeGesture 0
-defaults write \"com.apple.driver.AppleBluetoothMultitouch.trackpad\" TrackpadTwoFingerFromRightEdgeSwipeGesture 0
-
-### Accessibility
-
-# enable zoom using Control + two-finger swipe up/down
-defaults write \"com.apple.AppleMultitouchTrackpad\" HIDScrollZoomModifierMask 262144
-defaults write \"com.apple.driver.AppleBluetoothMultitouch.trackpad\" HIDScrollZoomModifierMask 262144
-defaults write \"com.apple.universalaccess\" closeViewPanningMode 0
-defaults write \"com.apple.universalaccess\" closeViewScrollWheelToggle 1
-defaults write \"com.apple.universalaccess\" closeViewZoomFollowsFocus 1
-defaults write \"com.apple.universalaccess\" closeViewSmoothImages 0
-# enable dictation
-defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs DictationIMMessageTracesSinceLastReport 2
-defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs DictationIMUseOnlyOfflineDictation 1
+defaults write "com.apple.AppleMultitouchTrackpad" TrackpadTwoFingerFromRightEdgeSwipeGesture 0
+defaults write "com.apple.driver.AppleBluetoothMultitouch.trackpad" TrackpadTwoFingerFromRightEdgeSwipeGesture 0
 
 ### Dock
 
@@ -85,17 +76,17 @@ killall Dock
 ### Finder
 
 # show all file extensions
-defaults write \"Apple Global Domain\" AppleShowAllExtensions 1
+defaults write "Apple Global Domain" AppleShowAllExtensions 1
 # don't warn before changing an extension
-defaults write \"com.apple.finder\" FXEnableExtensionChangeWarning 0
+defaults write "com.apple.finder" FXEnableExtensionChangeWarning 0
 # sort folders above files
-defaults write \"com.apple.finder\" _FXSortFoldersFirst 1
+defaults write "com.apple.finder" _FXSortFoldersFirst 1
 # set default search scope to current directory
-defaults write \"com.apple.finder\" FXDefaultSearchScope SCcf
+defaults write "com.apple.finder" FXDefaultSearchScope SCcf
 # show hidden files
-defaults write \"com.apple.finder\" AppleShowAllFiles 1
+defaults write "com.apple.finder" AppleShowAllFiles 1
 # show path bar
-defaults write \"com.apple.finder\" ShowPathbar 0
+defaults write "com.apple.finder" ShowPathbar 0
 
 # doesn't seem to work:
 # # default to list view
