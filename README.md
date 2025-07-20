@@ -1,5 +1,12 @@
 # README.md
 
+# Installation
+
+For the not-so-faint-of-heart:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/benglazer/dotfiles/refs/heads/main/bootstrap.sh)"
+```
+
 ## Example folder structure
 
 ```
