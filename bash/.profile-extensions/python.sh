@@ -33,7 +33,7 @@ ensure_latest_python_default() {
 
   echo Ensuring python is up-to-date and set to the system default
   uv python install 3 --default --preview
-  uv python upgrade
+  uv python upgrade --preview
 
   if [[ -f "${HOME}/requirements.txt" ]]; then
     echo "requirements.txt found, installing packages..."
