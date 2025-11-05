@@ -79,6 +79,7 @@ install_default_packages() {
 }
 
 post_install_config() {
+    echo "Applying post-installation configurations."
     git config --global core.excludesfile "${HOME}/.gitignore"
     if [[ "$OSTYPE" == "darwin"* ]]; then
         git config --global credential.helper "osxkeychain"
