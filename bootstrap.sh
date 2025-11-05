@@ -72,7 +72,7 @@ install_dotfiles() {
 install_default_packages() {
     echo "Installing default packages."
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        sudo xargs -a "${DOTFILES_DIR}/installers/apt-install.txt" sudo apt-get install -y
+        sudo xargs -a "${DOTFILES_DIR}/installers/apt-install.txt" sudo DEBIAN_FRONTEND=noninteractive apt-get install -y
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         brew bundle --file="${DOTFILES_DIR}/installers/Brewfile"
     fi
