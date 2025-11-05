@@ -1,5 +1,5 @@
 " Colors
-syntax on  " enable syntax processing
+syntax enable  " enable syntax processing
 set background=dark
 
 " Spaces & tabs
