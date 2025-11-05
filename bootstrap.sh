@@ -69,8 +69,8 @@ install_dotfiles() {
     stow "${STOW_TARGETS[@]}"
 }
 
-install_optional_packages() {
-    echo "Installing new packages."
+install_default_packages() {
+    echo "Installing default packages."
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         sudo xargs -a "${DOTFILES_DIR}/installers/apt-install.txt" sudo apt-get install -y
     elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -97,7 +97,7 @@ main() {
     clone_dotfiles_repo
     backup_existing_dotfiles
     install_dotfiles
-    install_optional_packages
+    install_default_packages
     post_install_config
     run_installers
     popd > /dev/null || return
