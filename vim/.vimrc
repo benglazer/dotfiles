@@ -6,6 +6,7 @@ set background=dark
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " expand tabs into spaces
+set ai              " auto-indent when inserting a new line
 
 " UI Config
 set number              " show line numbers
