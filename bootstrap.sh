@@ -85,12 +85,6 @@ post_install_config() {
     fi
 }
 
-run_installers() {
-    echo "Running installers."
-    source "${DOTFILES_DIR}/installers/ssh.sh"
-    source "${DOTFILES_DIR}/installers/python.sh"
-}
-
 main() {
     pushd . > /dev/null
     install_dependencies
@@ -99,9 +93,10 @@ main() {
     install_dotfiles
     install_default_packages
     post_install_config
-    run_installers
     popd > /dev/null || return
 }
 
 main
-echo "Bootstrap complete. Reboot to verify everything is working as expected."
+echo "Bootstrap complete."
+echo "Run optional installers in ${DOTFILES_DIR}/installers/"
+echo "Then reboot to verify everything is working as expected."
