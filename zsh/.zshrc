@@ -11,6 +11,7 @@ if [ -f "${HOME}/.zsh_aliases" ]; then
     source "${HOME}/.zsh_aliases"
 fi
 
+export PS1="%n@%m:%~$ "
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/ben/.zshrc'
