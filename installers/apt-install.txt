@@ -1,7 +1,14 @@
+ca-certificates
+curl
 dnsutils
+fzf
+git
 jc
 jq
 net-tools
+postgresql-client
 psmisc
-sqlite3
+ripgrep
 vim
+wget
+zsh
